@@ -91,7 +91,7 @@
 
 	// The first argument in the arguments parameter is the callbackID.
 	[self.callbackIds setValue:command.callbackId forKey:@"getPendingNotifications"];
-	NSDictionary *options = [command.arguments objectAtIndex:0];
+	//NSDictionary *options = [command.arguments objectAtIndex:0];
 
 	NSMutableDictionary *results = [NSMutableDictionary dictionary];
 	[results setValue:self.pendingNotifications forKey:@"notifications"];
@@ -166,7 +166,7 @@
 
 	// The first argument in the arguments parameter is the callbackID.
 	[self.callbackIds setValue:command.callbackId forKey:@"getRemoteNotificationStatus"];
-	NSDictionary *options = [command.arguments objectAtIndex:0];
+	//NSDictionary *options = [command.arguments objectAtIndex:0];
 
 	NSMutableDictionary *results = [PushNotification getRemoteNotificationStatus];
 
@@ -197,7 +197,7 @@
 
 	// The first argument in the arguments parameter is the callbackID.
 	[self.callbackIds setValue:command.callbackId forKey:@"cancelAllLocalNotifications"];
-	NSDictionary *options = [command.arguments objectAtIndex:0];
+	//NSDictionary *options = [command.arguments objectAtIndex:0];
 
 	[[UIApplication sharedApplication] cancelAllLocalNotifications];
 
@@ -210,7 +210,7 @@
 
 	// The first argument in the arguments parameter is the callbackID.
 	[self.callbackIds setValue:command.callbackId forKey:@"getDeviceUniqueIdentifier"];
-	NSDictionary *options = [command.arguments objectAtIndex:0];
+	//NSDictionary *options = [command.arguments objectAtIndex:0];
 
 	NSString* uuid = [[UIDevice currentDevice] uniqueIdentifier];
 
