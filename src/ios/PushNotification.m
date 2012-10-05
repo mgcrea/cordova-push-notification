@@ -66,7 +66,7 @@
     [results setValue:token forKey:@"deviceToken"];
 
 	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:results];
-	[self writeJavascript:[pluginResult toSuccessCallbackString:[self.callbackIds valueForKey:@"registerDevice"]]];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:[self.callbackIds valueForKey:@"registerDevice"]];
 }
 
 - (void)didFailToRegisterForRemoteNotificationsWithError:(NSError*)error {
@@ -76,7 +76,7 @@
 	[results setValue:[NSString stringWithFormat:@"%@", error] forKey:@"error"];
 
 	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:results];
-	[self writeJavascript:[pluginResult toErrorCallbackString:[self.callbackIds valueForKey:@"registerDevice"]]];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:[self.callbackIds valueForKey:@"registerDevice"]];
 }
 
 - (void)didReceiveRemoteNotification:(NSDictionary*)userInfo {
@@ -97,7 +97,7 @@
 	[results setValue:self.pendingNotifications forKey:@"notifications"];
 
 	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:results];
-	[self writeJavascript:[pluginResult toSuccessCallbackString:[self.callbackIds valueForKey:@"getPendingNotifications"]]];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:[self.callbackIds valueForKey:@"getPendingNotifications"]];
 
 	[self.pendingNotifications removeAllObjects];
 }
@@ -171,7 +171,7 @@
 	NSMutableDictionary *results = [PushNotification getRemoteNotificationStatus];
 
 	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:results];
-	[self writeJavascript:[pluginResult toSuccessCallbackString:[self.callbackIds valueForKey:@"getRemoteNotificationStatus"]]];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:[self.callbackIds valueForKey:@"getRemoteNotificationStatus"]];
 }
 
 - (void)setApplicationIconBadgeNumber:(CDVInvokedUrlCommand *)command {
@@ -189,7 +189,7 @@
     [results setValue:[NSNumber numberWithInt:1] forKey:@"success"];
 
 	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:results];
-	[self writeJavascript:[pluginResult toSuccessCallbackString:[self.callbackIds valueForKey:@"setApplicationIconBadgeNumber"]]];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:[self.callbackIds valueForKey:@"setApplicationIconBadgeNumber"]];
 }
 
 - (void)cancelAllLocalNotifications:(CDVInvokedUrlCommand *)command {
@@ -202,7 +202,7 @@
 	[[UIApplication sharedApplication] cancelAllLocalNotifications];
 
 	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-	[self writeJavascript:[pluginResult toSuccessCallbackString:[self.callbackIds valueForKey:@"cancelAllLocalNotifications"]]];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:[self.callbackIds valueForKey:@"cancelAllLocalNotifications"]];
 }
 
 - (void)getDeviceUniqueIdentifier:(CDVInvokedUrlCommand *)command {
@@ -215,7 +215,7 @@
 	NSString* uuid = [[UIDevice currentDevice] uniqueIdentifier];
 
 	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:uuid];
-	[self writeJavascript:[pluginResult toSuccessCallbackString:[self.callbackIds valueForKey:@"getDeviceUniqueIdentifier"]]];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:[self.callbackIds valueForKey:@"getDeviceUniqueIdentifier"]];
 }
 
 @end
