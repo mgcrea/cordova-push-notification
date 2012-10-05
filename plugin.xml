@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	id="org.apache.cordova.plugins.PushNotification"
+	version="1.0">
+
+	<name>PushNotification</name>
+
+	<asset src="www/PushNotification.js" target="PushNotification.js" />
+
+	<!-- android -->
+	<platform name="android">
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:name="org.apache.cordova.plugins.PushNotification"
+					  android:label="@string/app_name">
+				<intent-filter>
+				</intent-filter>
+			</activity>
+		</config-file>
+
+		<!-- Cordova 1.5 - 1.9 -->
+		<config-file target="res/xml/plugins.xml" parent="/plugins">
+			<plugin name="PushNotification"
+				value="org.apache.cordova.plugins.PushNotification"/>
+		</config-file>
+
+		<!-- Cordova 2.0.0 -->
+		<config-file target="res/xml/config.xml" parent="/cordova/plugins">
+			<plugin name="PushNotification"
+				value="org.apache.cordova.plugins.PushNotification"/>
+		</config-file>
+
+		<source-file src="src/android/PushNotification.java"
+				target-dir="org/apache/cordova/plugins/PushNotification" />
+	</platform>
+
+	<!-- ios -->
+	<platform name="ios">
+		<plugins-plist key="PushNotification" />
+
+		<header-file src="PushNotification.h" />
+
+		<source-file src="PushNotification.m" />
+	</platform>
+
+</plugin>
+

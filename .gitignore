@@ -1,0 +1,5 @@
+DerivedData/
+build/
+xcuserdata
+.DS_Store
+!.gitignore
