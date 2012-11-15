@@ -174,6 +174,18 @@
 	[self writeJavascript:[pluginResult toSuccessCallbackString:[self.callbackIds valueForKey:@"getRemoteNotificationStatus"]]];
 }
 
+- (void)getApplicationIconBadgeNumber:(CDVInvokedUrlCommand *)command {
+    DLog(@"getApplicationIconBadgeNumber:%@", command);
+    
+    [self.callbackIds setValue:command.callbackId forKey:@"getApplicationIconBadgeNumber"];
+    
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:[UIApplication sharedApplication].applicationIconBadgeNumber];
+
+    
+    [self writeJavascript:[pluginResult toSuccessCallbackString:[self.callbackIds valueForKey:@"getApplicationIconBadgeNumber"]]];
+	
+}
+
 - (void)setApplicationIconBadgeNumber:(CDVInvokedUrlCommand *)command {
 	DLog(@"setApplicationIconBadgeNumber:%@", command);
 
