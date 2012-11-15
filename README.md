@@ -152,6 +152,12 @@ Using this plugin requires [Cordova Android](https://github.com/apache/incubator
         navigator.notification.alert(JSON.stringify(['setBadge', status]));
     });
 
+`getApplicationIconBadgeNumber()` get the current value of the application badge number.
+
+    pushNotification.getApplicationIconBadgeNumber( function(badgeNumber) {
+        console.log('badgeNumber: ' +  badgeNumber);
+    });
+
 `cancelAllLocalNotifications()` can be used to clear all notifications from the notification center.
 
 

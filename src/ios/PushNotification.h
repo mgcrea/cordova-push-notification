@@ -27,6 +27,7 @@
 - (void)getPendingNotifications:(CDVInvokedUrlCommand *)command;
 + (NSMutableDictionary*)getRemoteNotificationStatus;
 - (void)getRemoteNotificationStatus:(CDVInvokedUrlCommand *)command;
+- (void)getApplicationIconBadgeNumber:(CDVInvokedUrlCommand *)command;
 - (void)setApplicationIconBadgeNumber:(CDVInvokedUrlCommand *)command;
 - (void)cancelAllLocalNotifications:(CDVInvokedUrlCommand *)command;
 - (void)getDeviceUniqueIdentifier:(CDVInvokedUrlCommand *)command;
