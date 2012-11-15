@@ -26,6 +26,11 @@
 		cordova.exec(callback, callback, "PushNotification", "getRemoteNotificationStatus", []);
 	};
 
+  // Call this to get the current value of the application badge number
+  PushNotification.prototype.getApplicationIconBadgeNumber = function(callback) {
+    cordova.exec(callback, callback, "PushNotification", "getApplicationIconBadgeNumber", []);
+  };
+
 	// Call this to set the application icon badge
 	PushNotification.prototype.setApplicationIconBadgeNumber = function(badge, callback) {
 		cordova.exec(callback, callback, "PushNotification", "setApplicationIconBadgeNumber", [{badge: badge}]);
