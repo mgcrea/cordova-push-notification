@@ -117,7 +117,7 @@ Using this plugin requires [Cordova Android](https://github.com/apache/incubator
 ## JAVASCRIPT INTERFACE (IOS/ANDROID) ##
 
     // After device ready, create a local alias
-    var pushNotification = window.plugins.pushNotification;
+    var pushNotification = navigator.plugins.pushNotification;
 
 `registerDevice()` does perform registration on Apple Push Notification servers (via user interaction) & retrieve the token that will be used to push remote notifications to this device.
 
