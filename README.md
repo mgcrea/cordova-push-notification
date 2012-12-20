@@ -13,13 +13,14 @@ Using this plugin requires [Cordova iOS](https://github.com/apache/incubator-cor
 
 1. Make sure your Xcode project has been [updated for Cordova](https://github.com/apache/incubator-cordova-ios/blob/master/guides/Cordova%20Upgrade%20Guide.md)
 2. Rename the `src/ios` folder to `PushNotification`, drag and drop it from Finder to your Plugins folder in XCode, using "Create groups for any added folders"
-3. Add the .js files to your `www` folder on disk, and add reference(s) to the .js files using `<script>` tags in your html file(s)
+3. Add the line  `#import "PushNotification.h"` to AppDelegate.h
+4. Add the .js files to your `www` folder on disk, and add reference(s) to the .js files using `<script>` tags in your html file(s)
 
 
     `<script type="text/javascript" src="/js/plugins/PushNotification.js"></script>`
 
 
-4. Add new entry with key `PushNotification` and value `PushNotification` to `Plugins` in `Cordova.plist/Cordova.plist`
+5. Add new entry with key `PushNotification` and value `PushNotification` to `Plugins` in `Cordova.plist/Cordova.plist`
 
 ### APPDELEGATE SETUP FOR IOS ###
 
