@@ -20,6 +20,7 @@ Using this plugin requires [Cordova iOS](https://github.com/apache/incubator-cor
 
 
 4. Add new entry with key `PushNotification` and value `PushNotification` to `Plugins` in `Cordova.plist/Cordova.plist`
+5. Make sure your provisioning profiles are set up to support push notifications. Here's a [great tutorial](http://www.raywenderlich.com/3443/apple-push-notification-services-tutorial-part-12).
 
 ### APPDELEGATE SETUP FOR IOS ###
 
@@ -117,7 +118,7 @@ Using this plugin requires [Cordova Android](https://github.com/apache/incubator
 ## JAVASCRIPT INTERFACE (IOS/ANDROID) ##
 
     // After device ready, create a local alias
-    var pushNotification = navigator.plugins.pushNotification;
+    var pushNotification = window.plugins.pushNotification;
 
 `registerDevice()` does perform registration on Apple Push Notification servers (via user interaction) & retrieve the token that will be used to push remote notifications to this device.
 
