@@ -127,7 +127,7 @@ Using this plugin requires [Cordova Android](https://github.com/apache/incubator
         // if successful status is an object that looks like this:
         // {"type":"7","pushBadge":"1","pushSound":"1","enabled":"1","deviceToken":"blablahblah","pushAlert":"1"}
         console.warn('registerDevice:%o', status);
-        navigator.notification.alert(JSON.stringify(['registerDevice', status]));
+        navigator.notification.alert(JSON.stringify(event.notification.aps.alert));
     });
 
 
