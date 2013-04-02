@@ -127,7 +127,7 @@ Using this plugin requires [Cordova Android](https://github.com/apache/incubator
         // if successful status is an object that looks like this:
         // {"type":"7","pushBadge":"1","pushSound":"1","enabled":"1","deviceToken":"blablahblah","pushAlert":"1"}
         console.warn('registerDevice:%o', status);
-        navigator.notification.alert(JSON.stringify(event.notification.aps.alert));
+        navigator.notification.alert(JSON.stringify(['registerDevice', status]));
     });
 
 
@@ -182,7 +182,7 @@ Finally, when a remote push notification is received while the application is ac
 
     document.addEventListener('push-notification', function(event) {
         console.warn('push-notification!:%o', event);
-        navigator.notification.alert(JSON.stringify(['push-notification!', event]));
+        navigator.notification.alert(JSON.stringify(event.notification.aps.alert));
     });
 
 * Check [source](https://github.com/mgcrea/cordova-push-notification/tree/master/www/PushNotification.js) for additional configuration.
