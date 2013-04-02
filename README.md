@@ -182,7 +182,7 @@ Finally, when a remote push notification is received while the application is ac
 
     document.addEventListener('push-notification', function(event) {
         console.warn('push-notification!:%o', event);
-        navigator.notification.alert(JSON.stringify(['push-notification!', event]));
+        navigator.notification.alert(JSON.stringify(event.notification.aps.alert));
     });
 
 * Check [source](https://github.com/mgcrea/cordova-push-notification/tree/master/www/PushNotification.js) for additional configuration.
