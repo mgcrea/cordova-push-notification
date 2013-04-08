@@ -8,8 +8,9 @@
 // MIT Licensed
 
 #import "PushNotification.h"
-#import <Cordova/JSONKit.h>
+//#import <Cordova/JSONKit.h>
 #import <Cordova/CDVDebug.h>
+#import "OpenUDID.h"
 
 @implementation PushNotification
 
@@ -81,8 +82,17 @@
 
 - (void)didReceiveRemoteNotification:(NSDictionary*)userInfo {
 	DLog(@"didReceiveRemoteNotification:%@", userInfo);
+    
+    // Converting Dict to NSString in JSON format using NSJSONSerialization as per Cordova 2.4.0
+    NSError* error = nil;
+    NSString *jsStatement = nil;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:userInfo options:0 error: &error];
+    if (error != nil){
+        jsStatement = [NSString stringWithFormat:@"window.plugins.pushNotification.notificationCallback({error: %@});",[error localizedDescription]];
+    }else{
+        jsStatement = [NSString stringWithFormat:@"window.plugins.pushNotification.notificationCallback(%@);", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]];
+    }
 
-	NSString *jsStatement = [NSString stringWithFormat:@"window.plugins.pushNotification.notificationCallback(%@);", [userInfo cdvjk_JSONString]];
 	[self writeJavascript:jsStatement];
 }
 
@@ -224,7 +234,17 @@
 	[self.callbackIds setValue:command.callbackId forKey:@"getDeviceUniqueIdentifier"];
 	//NSDictionary *options = [command.arguments objectAtIndex:0];
 
-	NSString* uuid = [[UIDevice currentDevice] uniqueIdentifier];
+    NSString* uuid = nil;
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(identifierForVendor)]) {
+        // IOS 6 new Unique Identifier implementation
+        uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    } else {
+        // Before iOS6 you shoud use a custom implementation for uuid
+        // Here I use OpenUDID (you have to import it into your project)
+        // https://github.com/ylechelle/OpenUDID
+        uuid = [OpenUDID value];
+        
+    }
 
 	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:uuid];
 	[self writeJavascript:[pluginResult toSuccessCallbackString:[self.callbackIds valueForKey:@"getDeviceUniqueIdentifier"]]];
