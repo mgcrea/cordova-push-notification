@@ -20,10 +20,15 @@ Using this plugin requires [Cordova iOS](https://github.com/apache/incubator-cor
 
 
 4. Add new entry with key `PushNotification` and value `PushNotification` to `Plugins` in `Cordova.plist/Cordova.plist`
+5. Make sure your provisioning profiles are set up to support push notifications. Here's a [great tutorial](http://www.raywenderlich.com/3443/apple-push-notification-services-tutorial-part-12).
 
 ### APPDELEGATE SETUP FOR IOS ###
 
-This plugin requires modifications to your `AppDelegate.m`. Append the block below at the end of your file, just before the implementation `@end`.
+This plugin requires modifications to your `AppDelegate.h`. Append the following line just below other imports.
+
+    #import "PushNotification.h"
+
+It also requires modifications to your `AppDelegate.m`. Append the block below at the end of your file, just before the implementation `@end`.
 
 
     /* ... */
@@ -150,6 +155,12 @@ Using this plugin requires [Cordova Android](https://github.com/apache/incubator
     pushNotification.setApplicationIconBadgeNumber(12, function(status) {
         console.warn('setApplicationIconBadgeNumber:%o', status);
         navigator.notification.alert(JSON.stringify(['setBadge', status]));
+    });
+
+`getApplicationIconBadgeNumber()` get the current value of the application badge number.
+
+    pushNotification.getApplicationIconBadgeNumber( function(badgeNumber) {
+        console.log('badgeNumber: ' +  badgeNumber);
     });
 
 `cancelAllLocalNotifications()` can be used to clear all notifications from the notification center.
