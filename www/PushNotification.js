@@ -33,7 +33,7 @@
 
 	// Call this to set the application icon badge
 	PushNotification.prototype.setApplicationIconBadgeNumber = function(badge, callback) {
-		cordova.exec(callback, callback, "PushNotification", "setApplicationIconBadgeNumber", [{badge: badge}]);
+		cordova.exec(callback, callback, "PushNotification", "setApplicationIconBadgeNumber", [badge]);
 	};
 
 	// Call this to clear all notifications from the notification center
